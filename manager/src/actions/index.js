@@ -3,6 +3,7 @@ import {
     PASSWORD_CHANGED
 } from './types';
 
+// to keep status of email
 export const emailChanged = (text) => {
     return {
         type: EMAIL_CHANGED,
