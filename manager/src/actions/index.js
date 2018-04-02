@@ -48,7 +48,7 @@ const loginUserSuccess = (dispatch, user) => {
     });
 
     // navigating with scene "key"
-    Actions.employeeList();
+    Actions.main();
 }
 
 const loginUserFail = (dispatch) => {
