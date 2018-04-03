@@ -7,7 +7,7 @@ import {employeeUpdate, employeeCreate} from '../actions'
 class EmployeeCreate extends Component {
     onButtonPress() {
         const {name, phone, shift} = this.props;
-        this.props.employeeCreate({name, phone, shift});
+        this.props.employeeCreate({name, phone, shift: shift || "Monday"});
     }
 
     render() {
@@ -18,7 +18,7 @@ class EmployeeCreate extends Component {
                         label="Name"
                         placeholder="Non"
                         value={this.props.name}
-                        onChangeText={text => {this.props.employeeUpdate(prop:'name', value: text)}}
+                        onChangeText={text => this.props.employeeUpdate({prop:'name', value: text})}
                     />
                 </CardSection>
 
@@ -28,7 +28,7 @@ class EmployeeCreate extends Component {
                         placeholder="(206)-555-5555"
                         value={this.props.value}
                         /* if name of key and value are same, can just pass in "value" for key, and value will also be variable */
-                        onChangeText={value => {this.props.employeeUpdate(prop:'phone', value)}}
+                        onChangeText={value => this.props.employeeUpdate({prop:'phone', value})}
                     />
                 </CardSection>
 
@@ -52,7 +52,7 @@ class EmployeeCreate extends Component {
                 </CardSection>
 
                 <CardSection>
-                    <Button onPress={this.onButtonPress().bind(this)}> Create </Button>
+                    <Button onPress={this.onButtonPress.bind(this)}> Create </Button>
                 </CardSection>
 
             </Card>
@@ -74,7 +74,4 @@ const mapStateToProp = (state) => {
 
 }
 
-export default connect(mapStateToProp, {
-    employeeUpdate,
-    employeeCreate
-})(EmployeeCreate);
+export default connect(mapStateToProp, { employeeUpdate,employeeCreate})(EmployeeCreate);
